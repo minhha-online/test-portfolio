@@ -25,6 +25,11 @@
             --card-bg: rgba(255, 255, 255, 0.05);
             --glass: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
+            --color-primary: #4776E6;
+            --color-secondary: #8E54E9;
+            --color-accent: #54e9d9;
+            --color-primary-trans: rgba(71, 118, 230, 0.6);
+            --color-secondary-trans: rgba(142, 84, 233, 0.6);
         }  
         * {
             margin: 0;
@@ -626,6 +631,7 @@
         
         .filter-btn.active, .filter-btn:hover {
             background: var(--gradient-bg);
+                color: white; /* Màu chữ khi nút được chọn */
             box-shadow: 0 5px 15px rgba(112, 0, 255, 0.3);
         }
         
@@ -870,164 +876,6 @@
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
-        }
-        
-        /* Timeline Experience Section */
-        .experience {
-            background: linear-gradient(to bottom, var(--primary), #080810);
-            position: relative;
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background: var(--gradient-bg);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 3px;
-        }
-        
-        .timeline-item {
-            padding: 10px 50px;
-            position: relative;
-            width: 50%;
-            opacity: 0;
-            transform: translateX(-100px);
-            transition: all 0.5s;
-        }
-        
-        .timeline-item.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            transform: translateX(100px);
-        }
-        
-        .timeline-item:nth-child(even).active {
-            transform: translateX(0);
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -12px;
-            top: 15px;
-            border-radius: 50%;
-            background: var(--gradient-bg);
-            z-index: 1;
-        }
-        
-        .timeline-item:nth-child(even)::after {
-            left: -12px;
-        }
-        
-        .timeline-content {
-            padding: 30px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            position: relative;
-        }
-        
-        .timeline-date {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .timeline-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .timeline-desc {
-            line-height: 1.6;
-            opacity: 0.8;
-        }
-        
-        /* AI Insights Section */
-        .ai-insights {
-            background: var(--primary);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .insights-container {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 30px;
-        }
-        
-        .insight-card {
-            grid-column: span 6;
-            padding: 40px;
-            border-radius: 20px;
-            background: var(--card-bg);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        
-        .insight-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        
-        .insight-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        
-        .insight-content {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-        
-        .insight-action {
-            align-self: flex-start;
-        }
-        
-        .tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .tech-item {
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-        
-        .tech-item:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-3px);
-        }
-        
-        .tech-icon {
-            color: var(--accent);
-            font-size: 16px;
         }
         
         /* Live Dashboard Section */
@@ -1572,6 +1420,806 @@
             height: 300px !important;
         }
 
+
+        /* Advanced Certifications Section Styles */
+        .certifications {
+            background: linear-gradient(135deg, rgba(20, 30, 48, 0.8) 0%, rgba(36, 59, 85, 0.8) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 0;
+        }
+
+        .certifications:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/backgrounds/grid-pattern.svg') center center;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        /* Certification Filters */
+        .certification-filters {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center; /* Căn chỉnh theo chiều dọc */ 
+            gap: 1rem; /* Khoảng cách giữa các phần tử */
+        }
+
+        .filter-label {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            align-items: center;
+            margin-bottom: auto;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, 
+        .filter-btn:hover {
+            background: linear-gradient(135deg, var(--color-primary-trans), var(--color-secondary-trans));
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .search-container {
+            position: relative;
+            margin-left: auto;
+            margin-bottom: auto;
+        }
+
+        .search-container input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            color: white;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* View Toggle */
+        .certification-view-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 2rem;
+        }
+
+        .view-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active, 
+        .view-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .view-btn i {
+            font-size: 0.8rem;
+        }
+
+        /* Featured Certifications */
+        .featured-certs {
+            margin-bottom: 3rem;
+        }
+
+        .featured-title {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .featured-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-primary), transparent);
+        }
+
+        .featured-certs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .certification-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .certification-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            z-index: 5;
+        }
+
+        .certification-content {
+            display: flex;
+            padding: 1.5rem;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .certification-logo {
+            flex: 0 0 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .certification-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .certification-details {
+            flex: 1;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .certification-date {
+            display: block;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .certification-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* Fallback */
+            display: block;
+        }
+
+        .certification-issuer {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.8rem;
+        }
+
+        .certification-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .certification-verify {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--color-accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .certification-verify:hover {
+            color: var(--color-primary);
+        }
+
+        /* Grid View */
+        .cert-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-grid-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 220px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .cert-grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .cert-grid-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-grid-logo {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .cert-grid-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .cert-grid-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .cert-grid-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cert-grid-skills {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .cert-grid-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(3px);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .cert-grid-item:hover .cert-grid-hover {
+            opacity: 1;
+        }
+
+        .cert-grid-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .cert-grid-verify {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--color-accent);
+            font-size: 0.85rem;
+            align-self: flex-end;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .cert-grid-verify:hover {
+            color: var(--color-primary);
+        }
+
+        /* Timeline View */
+        #timeline-view {
+            display: none;
+            position: relative;
+            margin: 4rem 0;
+        }
+
+        .timeline-years {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-year {
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-year.active,
+        .timeline-year:hover {
+            background: linear-gradient(135deg, var(--color-primary-trans), var(--color-secondary-trans));
+            color: white;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content {
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-placeholder {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .timeline-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* List View */
+        #list-view {
+            display: none;
+        }
+
+        .cert-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cert-table th,
+        .cert-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cert-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        .cert-table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .cert-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        #load-more-certs,
+        #view-less-certs {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        #load-more-certs i {
+            transition: all 0.3s ease;
+        }
+
+        #view-less-certs {
+            display: none; /* Hidden initially */
+        }
+
+        #view-less-certs:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Additional CSS for Certification Section */
+
+        /* Stats Cards */
+        .certification-stats {
+            margin-top: 4rem;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .stats-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* CTA Section */
+        .certification-cta {
+            margin-top: 4rem;
+            padding: 2.5rem;
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .cta-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cta-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Timeline specific styles */
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 45%;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(odd) {
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -30px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -30px;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Glass card effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* Fallback */
+            display: inline-block;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .featured-certs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-container {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .search-container input {
+                width: 100%;
+            }
+            
+            .timeline-item {
+                width: 90%;
+            }
+            
+            .timeline-item:nth-child(even),
+            .timeline-item:nth-child(odd) {
+                align-self: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .timeline-item::before {
+                display: none;
+            }
+            
+            .certification-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .certification-logo {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .certification-filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-buttons {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                justify-content: flex-start;
+            }
+            
+            .certification-view-toggle {
+                justify-content: center;
+            }
+            
+            .cert-grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .certification-cta {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cta-actions {
+                justify-content: center;
+            }
+            
+            .cert-table th:nth-child(4),
+            .cert-table td:nth-child(4) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cert-table th:nth-child(3),
+            .cert-table td:nth-child(3) {
+                display: none;
+            }
+        }
+
+        /* Animation effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .view-active {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+
+        
 </style>
 
 </head>
@@ -1998,6 +2646,205 @@
         </div>
     </section>
 
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications section">
+    <div class="container">
+        <h2 class="section-title">My <span class="gradient-text">Certifications</span></h2>
+        
+        <div class="certification-filters">
+            <div class="filter-label">Filter by:</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="alll">All</button>
+                <button class="filter-btn" data-filter="data-analysis">Data Analysis</button>
+                <button class="filter-btn" data-filter="visualization">Visualization</button>
+                <button class="filter-btn" data-filter="programming">Programming</button>
+                <button class="filter-btn" data-filter="ai-ml">AI & ML</button>
+                <button class="filter-btn" data-filter="cloud">Cloud</button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="cert-search" placeholder="Search certifications...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        
+        <div class="certification-view-toggle">
+            <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i> Grid</button>
+            <button class="view-btn" data-view="timeline"><i class="fas fa-stream"></i> Timeline</button>
+            <button class="view-btn" data-view="list"><i class="fas fa-list"></i> List</button>
+        </div>
+        
+        <!-- Grid View (Default) -->
+        <div class="certification-grid view-active" id="grid-view">
+            <!-- Featured Certificates Row -->
+            <div class="featured-certs">
+                <h3 class="featured-title">Featured Certifications</h3>
+                <div class="featured-certs-container">
+                    <!-- Featured Certificate 1 -->
+                    <div class="certification-card featured glass-card" data-category="data-analysis">
+                        <div class="certification-badge">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="certification-content">
+                            <div class="certification-logo">
+                                <img src="images/certifications/microsoft-logo.png" alt="Microsoft">
+                            </div>
+                            <div class="certification-details">
+                                <span class="certification-date">2024</span>
+                                <h3 class="certification-title">Microsoft Power BI Data Analyst</h3>
+                                <p class="certification-issuer">Microsoft</p>
+                                <p class="certification-description" style="display: none;">This certification demonstrates proficiency in using Power BI to analyze data and create reports.</p>
+                                <div class="certification-skills">
+                                    <span class="skill-tag">Power BI</span>
+                                    <span class="skill-tag">DAX</span>
+                                    <span class="skill-tag">Data Modeling</span>
+                                </div>
+                                <a href="#" class="certification-verify"><i class="fas fa-certificate"></i> Verify</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Featured Certificate 2 -->
+                    <div class="certification-card featured glass-card" data-category="ai-ml">
+                        <div class="certification-badge">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="certification-content">
+                            <div class="certification-logo">
+                                <img src="images/certifications/aws-logo.png" alt="AWS">
+                            </div>
+                            <div class="certification-details">
+                                <span class="certification-date">2023</span>
+                                <h3 class="certification-title">AWS Certified Machine Learning Specialty</h3>
+                                <p class="certification-issuer">Amazon Web Services</p>
+                                <p class="certification-description" style="display: none;">This certification validates expertise in machine learning and deep learning on the AWS platform.</p>
+                                <div class="certification-skills">
+                                    <span class="skill-tag">Machine Learning</span>
+                                    <span class="skill-tag">AWS</span>
+                                    <span class="skill-tag">SageMaker</span>
+                                </div>
+                                <a href="#" class="certification-verify"><i class="fas fa-certificate"></i> Verify</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Featured Certificate 3 -->
+                    <div class="certification-card featured glass-card" data-category="visualization">
+                        <div class="certification-badge">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="certification-content">
+                            <div class="certification-logo">
+                                <img src="images/certifications/tableau-logo.png" alt="Tableau">
+                            </div>
+                            <div class="certification-details">
+                                <span class="certification-date">2022</span>
+                                <h3 class="certification-title">Tableau Desktop Specialist</h3>
+                                <p class="certification-issuer">Tableau</p>
+                                <p class="certification-description" style="display: none;">This certification demonstrates foundational skills in Tableau Desktop and data visualization.</p>
+                                <div class="certification-skills">
+                                    <span class="skill-tag">Tableau</span>
+                                    <span class="skill-tag">Data Visualization</span>
+                                    <span class="skill-tag">Dashboard Design</span>
+                                </div>
+                                <a href="#" class="certification-verify"><i class="fas fa-certificate"></i> Verify</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Certificate Grid -->
+            <div class="cert-grid-container">
+                
+                
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button id="load-more-certs" class="btn">Load More <i class="fas fa-chevron-down"></i></button>
+                <button id="view-less-certs" class="btn" style="display: none;">View Less <i class="fas fa-chevron-up"></i></button>
+            </div>
+        </div>
+        
+        <!-- Timeline View -->
+        <div class="certification-timeline" id="timeline-view">
+            <!-- Timeline content would be dynamically generated by JavaScript -->
+            <div class="timeline-line"></div>
+            <div class="timeline-years">
+                <div class="timeline-year active">2024</div>
+                <div class="timeline-year">2023</div>
+                <div class="timeline-year">2022</div>
+                <div class="timeline-year">2021</div>
+                <div class="timeline-year">2020</div>
+            </div>
+            <div class="timeline-content">
+                <!-- Timeline items would be inserted here by JavaScript -->
+                <div class="timeline-placeholder">
+                    <i class="fas fa-clock"></i>
+                    <p>Please select a year to view certifications</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- List View -->
+        <div class="certification-list" id="list-view">
+            <table class="cert-table">
+                <thead>
+                    <tr>
+                        <th>Certificate</th>
+                        <th>Issuing Organization</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows would be inserted dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="certification-stats glass-card">
+            <div class="stats-header">
+                <h3>Certification <span class="gradient-text">Statistics</span></h3>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="stat-number cert-count">20+</div>
+                    <div class="stat-label">Certifications</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-building"></i></div>
+                    <div class="stat-number issuer-count">12</div>
+                    <div class="stat-label">Organizations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-tags"></i></div>
+                    <div class="stat-number skill-count">35+</div>
+                    <div class="stat-label">Skills Verified</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="stat-number year-count">5</div>
+                    <div class="stat-label">Years of Learning</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="certification-cta glass-card">
+            <div class="cta-content">
+                <h3>Continuous <span class="gradient-text">Professional Development</span></h3>
+                <p>I believe in lifelong learning and staying at the forefront of data analytics technology. My certifications reflect my commitment to maintaining cutting-edge skills in this rapidly evolving field.</p>
+            </div>
+            <div class="cta-actions">
+                <a href="#contact" class="btn">Discuss My Qualifications</a>
+                <a href="files/resume.pdf" class="btn btn-outline">Download Full CV</a>
+            </div>
+        </div>
+    </div>
+    </section>
+    
     <!-- Contact Section -->
     <section id="contact" class="contact section">
         <div class="container">
@@ -2027,23 +2874,32 @@
                     </div>
                 </div>
                 <div class="contact-form glass-card">
-                    <form id="contactForm">
+                    <!-- Update the contact form HTML -->
+                    <form id="contactForm" action="https://formsubmit.co/anhminh120802@gmail.com" method="POST">
                         <div class="form-group">
                             <label for="name" class="form-label">Your Name</label>
-                            <input type="text" id="name" class="form-input" required>
+                            <input type="text" id="name" name="name" class="form-input" required>
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" id="email" class="form-input" required>
+                            <input type="email" id="email" name="email" class="form-input" required>
                         </div>
                         <div class="form-group">
                             <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-input" required>
+                            <input type="text" id="subject" name="subject" class="form-input" required>
                         </div>
                         <div class="form-group">
                             <label for="message" class="form-label">Your Message</label>
-                            <textarea id="message" class="form-textarea" required></textarea>
+                            <textarea id="message" name="message" class="form-textarea" required></textarea>
                         </div>
+                        <!-- Prevent spam -->
+                        <input type="text" name="_honey" style="display:none">
+                        <!-- Customize success page -->
+                        <input type="hidden" name="_next" value="https://minhha-online.github.io/Portfolio/thanks.html">
+                        <!-- Custom subject -->
+                        <input type="hidden" name="_subject" value="New Portfolio Contact Message!">
+                        <!-- Disable captcha -->
+                        <input type="hidden" name="_captcha" value="false">
                         <button type="submit" class="btn form-submit">Send Message</button>
                     </form>
                 </div>
@@ -2120,8 +2976,7 @@
         
         // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
-        const menu = document.querySelector('.menu');
-        
+        const menu = document.querySelector('.menu');  
         menuToggle.addEventListener('click', function() {
             menu.classList.toggle('active');
             if (menu.classList.contains('active')) {
@@ -2553,30 +3408,33 @@
                 }
             });
             }   
-    };
-    document.addEventListener('DOMContentLoaded', () => {
-    const refreshBtn = document.querySelector('.dashboard-btn .fa-sync-alt').parentElement;
-    const dateRangeBtn = document.querySelector('.dashboard-btn .fa-calendar-alt').parentElement;
-    const exportBtn = document.querySelector('.dashboard-btn .fa-download').parentElement;
+        };
 
-    refreshBtn.addEventListener('click', () => {
-        alert('🔄 Dashboard data refreshed!');
-        // TODO: thêm logic tải lại dữ liệu ở đây
-    });
 
-    dateRangeBtn.addEventListener('click', () => {
-        alert('📆 Showing data from the last 30 days');
-        // TODO: mở bộ lọc ngày hoặc hiển thị pop-up
-    });
+        document.addEventListener('DOMContentLoaded', () => {
+        const refreshBtn = document.querySelector('.dashboard-btn .fa-sync-alt').parentElement;
+        const dateRangeBtn = document.querySelector('.dashboard-btn .fa-calendar-alt').parentElement;
+        const exportBtn = document.querySelector('.dashboard-btn .fa-download').parentElement;
 
-    exportBtn.addEventListener('click', () => {
-        alert('📤 Data exported!');
-        // TODO: thêm logic export (CSV, PDF...)
-    });
-    });
+        refreshBtn.addEventListener('click', () => {
+            alert('🔄 Dashboard data refreshed!');
+            // TODO: thêm logic tải lại dữ liệu ở đây
+        });
 
-    // Wait for DOM content to load
-    document.addEventListener('DOMContentLoaded', function() {
+        dateRangeBtn.addEventListener('click', () => {
+            alert('📆 Showing data from the last 30 days');
+            // TODO: mở bộ lọc ngày hoặc hiển thị pop-up
+        });
+
+        exportBtn.addEventListener('click', () => {
+            alert('📤 Data exported!');
+            // TODO: thêm logic export (CSV, PDF...)
+        });
+        initCharts();
+        });
+
+        // Wait for DOM content to load
+        document.addEventListener('DOMContentLoaded', function() {
         // Remove loader after page load
         setTimeout(function() {
         document.getElementById('loader').style.opacity = '0';
@@ -2595,6 +3453,520 @@
         // Initialize Three.js Particle Background
         initParticles();
     });
-initCharts();
+
+        //Certifications sections 
+        document.addEventListener('DOMContentLoaded', function() {
+
+        // DOM elements
+        const gridView = document.getElementById('grid-view');
+        const timelineView = document.getElementById('timeline-view');
+        const listView = document.getElementById('list-view');
+        const viewButtons = document.querySelectorAll('.view-btn');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('cert-search');
+        const loadMoreButton = document.getElementById('load-more-certs');
+        const viewLessButton = document.getElementById('view-less-certs');
+        const timelineYears = document.querySelectorAll('.timeline-year');
+        const timelineContent = document.querySelector('.timeline-content');
+        const certTableBody = document.querySelector('.cert-table tbody');
+        const certGridContainer = document.querySelector('.cert-grid-container');
+        const existingCerts = document.querySelectorAll('.cert-grid-item').length;
+        const originalHTML = document.querySelector('.cert-grid-container').innerHTML;
+
+        // Current state
+        let currentView = 'grid';
+        let currentFilter = 'alll';
+        let currentYear = '2024';
+        let searchQuery = '';
+        let loadedCount = existingCerts; // Initial number of certifications shown
+        const loadIncrement = 4; // How many more to load each time
+
+        // Certification data - In a real application, this could come from a backend API
+        const certifications = [
+            // Featured certifications already in HTML
+            {
+                id: 1,
+                title: "Google Data Analytics Professional Certificate",
+                issuer: "Google",
+                date: "2023",
+                logo: "images/certifications/google-logo.png",
+                category: "data-analysis",
+                skills: ["SQL", "R"],
+                description: "Comprehensive training in data collection, transformation, analysis, and visualization using industry-standard tools."
+            },
+            {
+                id: 2,
+                title: "Data Scientist with Python",
+                issuer: "DataCamp",
+                date: "2023",
+                logo: "images/certifications/datacamp-logo.png",
+                category: "programming",
+                skills: ["Python", "Pandas"],
+                description: "Proficient in Python programming for data manipulation, visualization, and implementing machine learning algorithms."
+            },
+            // Grid certifications already in HTML
+            // More certifications for loading with "Load More" button
+            {
+                id: 7,
+                title: "TensorFlow Developer Certificate",
+                issuer: "Google",
+                date: "2021",
+                logo: "images/certifications/tensorflow-logo.png",
+                category: "ai-ml",
+                skills: ["TensorFlow", "Neural Networks", "Python"],
+                description: "Demonstrates proficiency in using TensorFlow to solve deep learning and ML problems."
+            },
+            {
+                id: 8,
+                title: "IBM Data Science Professional",
+                issuer: "IBM",
+                date: "2021",
+                logo: "images/certifications/ibm-logo.png",
+                category: "data-analysis",
+                skills: ["Data Science", "Python", "Machine Learning"],
+                description: "Comprehensive data science certification covering the entire data science process."
+            },
+            {
+                id: 9,
+                title: "Azure Data Engineer Associate",
+                issuer: "Microsoft",
+                date: "2020",
+                logo: "images/certifications/azure-logo.png",
+                category: "cloud",
+                skills: ["Azure", "Data Lakes", "Databricks"],
+                description: "Expertise in designing and implementing data solutions using Azure data services."
+            }
+            // Add more certifications as needed
+        ];
+
+
+        // View switching
+        viewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const view = button.getAttribute('data-view');
+                switchView(view);
+            });
+        });
+
+        function switchView(view) {
+            // Remove active class from all view buttons
+            viewButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            document.querySelector(`.view-btn[data-view="${view}"]`).classList.add('active');
+            
+            // Hide all views
+            gridView.style.display = 'none';
+            timelineView.style.display = 'none';
+            listView.style.display = 'none';
+            
+            // Show selected view
+            if (view === 'grid') {
+                gridView.style.display = 'block';
+            } else if (view === 'timeline') {
+                timelineView.style.display = 'block';
+                renderTimelineView(currentYear);
+            } else if (view === 'list') {
+                listView.style.display = 'block';
+                renderListView();
+            }
+            
+            currentView = view;
+        }
+
+        // Category filtering
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                
+                applyFilter(filter);
+                
+            });
+        });
+
+        // First, add this helper function to get filtered certifications
+        function getFilteredCertifications() {
+            return certifications.filter(cert => 
+                currentFilter === 'alll' || cert.category === currentFilter
+            );
+        }
+
+        function applyFilter(filter) {
+            currentFilter = filter;
+            
+            // Update active filter button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            if (filter === 'alll') {
+                // Nếu chọn "Alll", làm sáng nút "Alll"
+                document.querySelector(`.filter-btn[data-filter="alll"]`).classList.add('active');
+            } else {
+                // Nếu chọn filter khác, làm sáng nút tương ứng
+                document.querySelector(`.filter-btn[data-filter="${filter}"]`).classList.add('active');
+            }
+            
+            // Reset to initial state when filter changes
+            loadedCount = existingCerts;
+            certGridContainer.innerHTML = originalHTML;
+            
+             // Get filtered certifications
+             const filteredCerts = certifications.filter(cert => 
+                filter === 'alll' || cert.category === filter
+            );
+            
+            // Hide both buttons if no certificates for this filter
+            if (filteredCerts.length === 0) {
+                loadMoreButton.style.display = 'none';
+                viewLessButton.style.display = 'none';
+            }
+            // Check if we've already loaded all certifications for this filter
+            else if (filteredCerts.length <= existingCerts) {
+                // If all filtered certs are already shown
+                loadMoreButton.style.display = 'none';
+                viewLessButton.style.display = 'inline-block';
+            } else {
+                // If there are more certs to load
+                loadMoreButton.style.display = 'inline-block';
+                viewLessButton.style.display = 'none';
+            }
+    
+            // Apply filter based on current view
+            if (currentView === 'grid') {
+                filterGridItems();
+            } else if (currentView === 'timeline') {
+                renderTimelineView(currentYear);
+            } else if (currentView === 'list') {
+                renderListView();
+            }
+        }
+
+        function filterGridItems() {
+            // Get all grid items (including featured)
+            const gridItems = document.querySelectorAll('.certification-card, .cert-grid-item');
+            
+            gridItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                const titleElement = item.querySelector('.certification-title, .cert-grid-title');
+                const issuerElement = item.querySelector('.certification-issuer, .cert-grid-issuer');
+                
+                // Add null checks
+                const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+                const issuer = issuerElement ? issuerElement.textContent.toLowerCase() : '';
+                
+                if (currentFilter === 'alll' || category === currentFilter) {                    
+                    if (searchQuery === '' || title.includes(searchQuery) || issuer.includes(searchQuery)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        // After filtering, check if we need to show/hide Load More button
+        const visibleItems = document.querySelectorAll(`.cert-grid-item[data-category="${currentFilter}"]:not([style*="display: none"])`).length;
+        if (currentFilter !== 'alll' && visibleItems === 0) {
+            loadMoreButton.style.display = 'none';
+        }
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            
+            if (currentView === 'grid') {
+                filterGridItems();
+            } else if (currentView === 'timeline') {
+                renderTimelineView(currentYear);
+            } else if (currentView === 'list') {
+                renderListView();
+            }
+        });
+
+        // Timeline year selection
+        timelineYears.forEach(yearBtn => {
+            yearBtn.addEventListener('click', () => {
+                timelineYears.forEach(btn => btn.classList.remove('active'));
+                yearBtn.classList.add('active');
+                
+                currentYear = yearBtn.textContent;
+                renderTimelineView(currentYear);
+            });
+        });
+
+        // Function to extract featured certifications from HTML
+        function getFeaturedCertifications() {
+            const featuredCards = document.querySelectorAll('.certification-card.featured');
+            return Array.from(featuredCards).map(card => ({
+                title: card.querySelector('.certification-title').textContent,
+                issuer: card.querySelector('.certification-issuer').textContent,
+                date: card.querySelector('.certification-date').textContent,
+                logo: card.querySelector('.certification-logo img').src,
+                category: card.getAttribute('data-category'),
+                skills: Array.from(card.querySelectorAll('.skill-tag')).map(tag => tag.textContent),
+                description: card.querySelector('.certification-description')?.textContent || 
+                    "Professional certification demonstrating expertise in the field."
+            }));
+        }
+
+        // Render timeline view for a specific year
+        function renderTimelineView(year) {
+            // Clear previous timeline items
+            timelineContent.innerHTML = '';
+            
+             // Combine featured and additional certifications
+            const allCerts = [...getFeaturedCertifications(), ...certifications];
+
+            // Filter certifications by year and current filter
+            const filteredCerts = allCerts.filter(cert => {
+                return cert.date === year && 
+                    (currentFilter === 'alll' || cert.category === currentFilter) &&
+                    (searchQuery === '' || 
+                    cert.title.toLowerCase().includes(searchQuery) || 
+                    cert.issuer.toLowerCase().includes(searchQuery));
+            });
+            
+            if (filteredCerts.length === 0) {
+                // Show placeholder if no certifications found
+                timelineContent.innerHTML = `
+                    <div class="timeline-placeholder">
+                        <i class="fas fa-clock"></i>
+                        <p>No certifications found for ${year} with current filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Render each certification in timeline format
+            filteredCerts.forEach((cert, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.innerHTML = `
+                    <div class="timeline-item-header">
+                        <div class="timeline-item-logo">
+                            <img src="${cert.logo}" alt="${cert.issuer}">
+                        </div>
+                        <div class="timeline-item-title">
+                            <h4>${cert.title}</h4>
+                            <p>${cert.issuer}</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item-body">
+                        <p>${cert.description}</p>
+                        <div class="timeline-item-skills">
+                            ${cert.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                    <a href="#" class="certification-verify"><i class="fas fa-certificate"></i> Verify</a>
+                `;
+                timelineContent.appendChild(timelineItem);
+            });
+        }
+
+        // Render list view
+        function renderListView() {
+            // Clear previous list items
+            certTableBody.innerHTML = '';
+            
+             // Combine featured and additional certifications
+            const allCerts = [...getFeaturedCertifications(), ...certifications];
+
+            // Filter certifications based on current filter and search
+            const filteredCerts = allCerts.filter(cert => {
+                return (currentFilter === 'alll' || cert.category === currentFilter) &&
+                    (searchQuery === '' || 
+                    cert.title.toLowerCase().includes(searchQuery) || 
+                    cert.issuer.toLowerCase().includes(searchQuery));
+            });
+            
+            // Render each certification as a table row
+            filteredCerts.forEach(cert => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <div class="table-cert-info">
+                            <div class="table-cert-logo">
+                                <img src="${cert.logo}" alt="${cert.issuer}" width="30">
+                            </div>
+                            <div class="table-cert-title">${cert.title}</div>
+                        </div>
+                    </td>
+                    <td>${cert.issuer}</td>
+                    <td>${cert.date}</td>
+                    <td>${getCategoryName(cert.category)}</td>
+                    <td>
+                        <a href="#" class="table-cert-verify"><i class="fas fa-certificate"></i> Verify</a>
+                    </td>
+                `;
+                certTableBody.appendChild(row);
+            });
+        }
+
+        // Helper function to get readable category name
+        function getCategoryName(category) {
+            const categories = {
+                'data-analysis': 'Data Analysis',
+                'visualization': 'Visualization',
+                'programming': 'Programming',
+                'ai-ml': 'AI & ML',
+                'cloud': 'Cloud'
+            };
+            return categories[category] || category;
+        }
+
+        // Load more functionality
+        loadMoreButton.addEventListener('click', () => {
+            // Get filtered certifications based on current filter
+            const filteredCerts = certifications.filter(cert => 
+                currentFilter === 'alll' || cert.category === currentFilter
+            );
+
+            // Calculate the slice indices accounting for existing certificates
+            const startIndex = loadedCount - existingCerts;
+            const endIndex = startIndex + loadIncrement;
+            const additionalCerts = filteredCerts.slice(startIndex, endIndex);
+                        
+            // Render additional certifications
+            if (additionalCerts.length > 0) {
+                additionalCerts.forEach(cert => {
+                    const certItem = document.createElement('div');
+                    certItem.className = 'cert-grid-item glass-card';
+                    certItem.setAttribute('data-category', cert.category);
+                    certItem.innerHTML = `
+                        <div class="cert-grid-content">
+                            <div class="cert-grid-logo">
+                                <img src="${cert.logo}" alt="${cert.issuer}">
+                            </div>
+                            <h4 class="cert-grid-title">${cert.title}</h4>
+                            <div class="cert-grid-meta">
+                                <span class="cert-grid-issuer">${cert.issuer}</span>
+                                <span class="cert-grid-date">${cert.date}</span>
+                            </div>
+                            <div class="cert-grid-skills">
+                                ${cert.skills.slice(0, 2).map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div class="cert-grid-hover">
+                            <p class="cert-grid-description">${cert.description}</p>
+                            <a href="#" class="cert-grid-verify"><i class="fas fa-certificate"></i> Verify</a>
+                        </div>
+                    `;
+                certGridContainer.appendChild(certItem);
+                });
+
+                loadedCount += loadIncrement; // Update loaded count
+                
+                // Check if we've loaded all certificates for the current filter
+                if ((loadedCount - existingCerts) >= filteredCerts.length) {
+                loadMoreButton.style.display = 'none';
+                viewLessButton.style.display = 'inline-block';
+                }
+                
+            } else {
+                // If no more certificates to load
+                loadMoreButton.style.display = 'none';
+                viewLessButton.style.display = 'inline-block';
+            }
+
+
+            // Apply current filter - make sure it works with 'alll'
+            if (currentFilter === 'alll') {
+                // Show all items
+                const items = document.querySelectorAll('.cert-grid-item');
+                items.forEach(item => {
+                    item.style.display = 'block';
+                });
+            } else {
+            // Apply current filter
+            filterGridItems();
+            }
+        });
+
+
+        // Event listener for View Less button
+        viewLessButton.addEventListener('click', () => {
+            // Reset to initial state
+            loadedCount = existingCerts;
+            certGridContainer.innerHTML = originalHTML;
+            
+            // Show/hide appropriate buttons
+            loadMoreButton.style.display = 'inline-block';
+            viewLessButton.style.display = 'none';
+        // Apply current filter if needed
+        if (currentFilter !== 'alll') {
+            filterGridItems();
+        }
+     });
+    // Initial setup
+    function initialize_cer() {
+        // Show/hide Load More button based on total certificates
+        if (certifications.length === 0) {
+            loadMoreButton.style.display = 'none';
+        }
+        
+        // Apply initial filter
+        filterGridItems();
+    }
+
+    // Call initialize when page loads
+    initialize_cer();
+    
+        // Initialize animations for certificate cards when they come into view
+        function initializeAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            const animElements = document.querySelectorAll('.certification-card, .cert-grid-item, .stat-card');
+            animElements.forEach(elem => {
+                observer.observe(elem);
+            });
+        }
+
+        // Initialize counters for statistics
+        function initializeCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.innerText);
+                counter.innerText = '0';
+                
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        let count = 0;
+                        const interval = setInterval(() => {
+                            count++;
+                            counter.innerText = count + (counter.classList.contains('cert-count') || counter.classList.contains('skill-count') ? '+' : '');
+                            
+                            if (count >= target) {
+                                clearInterval(interval);
+                            }
+                        }, 60);
+                        
+                        observer.unobserve(entries[0].target);
+                    }
+                }, { threshold: 0.5 });
+                
+                observer.observe(counter.parentElement);
+            });
+        }
+
+        // Initialize all functionality
+        function initialize() {
+            // Apply initial filter
+            filterGridItems();
+            
+            // Setup intersection observers for animations
+            initializeAnimations();
+            initializeCounters();
+        }
+        initialize(); // Call the initialize function to set everything up
+    });
+
+
 
 </script>
